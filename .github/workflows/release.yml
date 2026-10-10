@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The compiled assembly is committed, so the repo is packaged as-is. The DLL
+      # cannot be rebuilt here: EccentricFurniture.dll is a Workshop mod and is not
+      # available to CI. Build locally before tagging.
+      - name: Package mod folder
+        run: |
+          mkdir -p staging/EccentricSupplyInput
+          cp -r About Assemblies Defs Textures README.md LICENSE staging/EccentricSupplyInput/
+          cd staging
+          zip -r ../EccentricSupplyInput-${GITHUB_REF_NAME}.zip EccentricSupplyInput
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: EccentricSupplyInput-${{ github.ref_name }}.zip
+          generate_release_notes: true

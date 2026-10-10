@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>EccentricSupplyInput</AssemblyName>
+    <RootNamespace>EccentricSupplyInput</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <OutputPath>Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DebugType>none</DebugType>
+    <!-- Spacer Furniture is a Workshop mod, not a NuGet package. Override on the
+         command line if it lives elsewhere:
+         dotnet build -p:EccentricFurniturePath=D:\path\to\EccentricFurniture.dll -->
+    <EccentricFurniturePath Condition="'$(EccentricFurniturePath)' == ''">$(MSBuildThisFileDirectory)..\..\..\..\workshop\content\294100\3118185542\1.6\Assemblies\EccentricFurniture.dll</EccentricFurniturePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Source\SupplyInput.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Reference-only: these assemblies must never be copied into Assemblies\. -->
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4871" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="Lib.Harmony.Ref" Version="2.3.3" PrivateAssets="all" ExcludeAssets="runtime" />
+    <Reference Include="EccentricFurniture">
+      <HintPath>$(EccentricFurniturePath)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="WarnMissingDependency" BeforeTargets="Build" Condition="!Exists('$(EccentricFurniturePath)')">
+    <Error Text="EccentricFurniture.dll not found at $(EccentricFurniturePath). Subscribe to Eccentric Tech - Spacer Furniture, or pass -p:EccentricFurniturePath=..." />
+  </Target>
+
+</Project>

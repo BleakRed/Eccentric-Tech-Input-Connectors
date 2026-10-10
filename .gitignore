@@ -1,2 +1,4 @@
 .codegraph/
 *.bak
+bin/
+obj/

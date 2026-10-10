@@ -110,22 +110,23 @@ The overlay is a new `AbstractOverlayComp` subclass. The repair cabinet's own ov
 
 ## Building from source
 
-There is no `.csproj`; the single source file compiles directly.
+Requires the [.NET SDK](https://dotnet.microsoft.com/download) and a local copy of
+Eccentric Tech - Spacer Furniture (subscribe on the Workshop).
 
 ```
-csc.exe /target:library /optimize+ /out:Assemblies\EccentricSupplyInput.dll ^
-  /reference:<Managed>\netstandard.dll ^
-  /reference:<Managed>\Assembly-CSharp.dll ^
-  /reference:<Managed>\UnityEngine.CoreModule.dll ^
-  /reference:<Managed>\UnityEngine.IMGUIModule.dll ^
-  /reference:<Harmony>\0Harmony.dll ^
-  /reference:<SpacerFurniture>\1.6\Assemblies\EccentricFurniture.dll ^
-  Source\SupplyInput.cs
+dotnet build -c Release
 ```
 
-`<Managed>` is `RimWorldWin64_Data\Managed`. Def and cost changes need only a restart, not a rebuild.
+The output lands in `Assemblies\`. `EccentricFurniture.dll` is resolved from the default
+Workshop path; pass `-p:EccentricFurniturePath=<path to EccentricFurniture.dll>` if the
+mod lives elsewhere. RimWorld and Harmony come from NuGet reference packages
+(`Krafs.Rimworld.Ref`, `Lib.Harmony.Ref`) and are never copied into the mod.
 
----
+Def and cost changes need only a restart, not a rebuild.
+
+Releases are built locally and tagged; pushing a `v*` tag packages the mod folder into a
+ZIP on the Releases page. CI cannot compile the mod, because the upstream Workshop
+assembly is not available to it.
 
 ## Known limitations
 
@@ -140,3 +141,18 @@ csc.exe /target:library /optimize+ /out:Assemblies\EccentricSupplyInput.dll ^
 Supply network, repair system and all reused components are the work of **Aelanna**, from Eccentric Tech - Spacer Furniture. This add-on only widens which cells those components read.
 
 Unofficial fan add-on, not affiliated with or endorsed by the original author.
+
+---
+
+## License
+
+This mod's own code, defs and textures are MIT licensed — see [LICENSE](LICENSE).
+
+The MIT grant covers only this add-on. Eccentric Tech - Spacer Furniture, and every
+component this mod patches or references, remain the work and property of **Aelanna**
+under whatever terms that mod is distributed; no upstream code is copied or redistributed
+here. If Aelanna objects to this add-on, it comes down.
+
+Portions of the materials used to create this content/mod are trademarks and/or
+copyrighted works of Ludeon Studios Inc. All rights reserved by Ludeon. This content/mod
+is not official and is not endorsed by Ludeon.
