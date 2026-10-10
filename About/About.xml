@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ModMetaData>
+    <name>Eccentric Tech - Input Connectors</name>
+    <author>BleakRed</author>
+    <packageId>bleakred.eccentrictech.supplyinput</packageId>
+    <modVersion>0.1</modVersion>
+    <modIconPath>EccentricSupplyInput/ModIcon</modIconPath>
+    <description>An unofficial add-on for Eccentric Tech - Spacer Furniture.
+
+Adds two floor-level connectors you build underneath a storage building or a stockpile zone, so an entire storage area works as one piece of supply-network infrastructure instead of one tile at a time.
+
+SUPPLY INPUT CONNECTOR
+Registers everything held in the storage above it with the Eccentric supply network, so autoloaders, repair shelves and autofabricators can draw from it. Unlocks with supply networks.
+
+REPAIR INPUT CONNECTOR
+Repairs damaged weapons and apparel held in the storage above it, using materials from the network. Shows the item being worked on, and lists every active repair cycle in its Repair tab. Unlocks with automated repair.
+
+The stock shelves are single-cell buildings, and they only act on items standing on their own tile. The connectors read the whole slot group above them instead - a multi-cell shelf, a deep storage unit, or an entire stockpile zone. They are priced as a late-colony convenience rather than gated behind deeper research.
+
+Each connector can be turned off in the mod settings.
+
+Requires Eccentric Tech - Spacer Furniture and Harmony. Load after both.</description>
+    <!-- <url>https://...</url>  fill in once the mod has a Workshop or repo page -->
+    <supportedVersions>
+        <li>1.6</li>
+    </supportedVersions>
+    <modDependencies>
+        <li>
+            <packageId>brrainz.harmony</packageId>
+            <displayName>Harmony</displayName>
+            <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+        </li>
+        <li>
+            <packageId>Aelanna.EccentricTech.Furniture</packageId>
+            <displayName>Eccentric Tech - Spacer Furniture</displayName>
+            <steamWorkshopUrl>steam://url/CommunityFilePage/3118185542</steamWorkshopUrl>
+        </li>
+    </modDependencies>
+    <loadAfter>
+        <li>brrainz.harmony</li>
+        <li>Aelanna.EccentricTech.Furniture</li>
+    </loadAfter>
+</ModMetaData>

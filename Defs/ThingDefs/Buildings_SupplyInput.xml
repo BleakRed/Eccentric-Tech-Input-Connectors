@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Eccentric_SupplyInputConnector</defName>
+    <label>supply input connector</label>
+    <description>A floor-level connector that registers the storage building or stockpile zone above it with a supply network. Every item held in that storage becomes available to connected autoloaders, repair shelves and autofabricators.\n\nUnlike a supply shelf, which only contributes what sits on its own tile, the connector reads the entire storage it is built under.\n\nAlso acts as a supply conduit, so a network can be routed through it.</description>
+    <thingClass>Building</thingClass>
+    <category>Building</category>
+    <size>(1,1)</size>
+    <tickerType>Rare</tickerType>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <passability>Standable</passability>
+    <pathCost>0</pathCost>
+    <fillPercent>0</fillPercent>
+    <drawerType>MapMeshOnly</drawerType>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <clearBuildingArea>false</clearBuildingArea>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <noRightClickDraftAttack>true</noRightClickDraftAttack>
+    <canOverlapZones>true</canOverlapZones>
+    <building>
+      <isEdifice>false</isEdifice>
+      <isInert>true</isInert>
+      <ai_chillDestination>false</ai_chillDestination>
+      <canLandGravshipOn>true</canLandGravshipOn>
+      <relatedBuildCommands>
+        <li>Eccentric_SupplyConduit</li>
+        <li>Eccentric_SupplyConduitUnderground</li>
+      </relatedBuildCommands>
+    </building>
+    <graphicData>
+      <texPath>EccentricSupplyInput/SupplyInputConnector</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <damageData>
+        <enabled>false</enabled>
+      </damageData>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <WorkToBuild>1200</WorkToBuild>
+      <Flammability>0.5</Flammability>
+    </statBases>
+    <costList>
+      <Plasteel>50</Plasteel>
+      <ComponentIndustrial>5</ComponentIndustrial>
+      <ComponentSpacer>2</ComponentSpacer>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>50</basePowerConsumption>
+      </li>
+      <li Class="EccentricFurniture.CompProperties_SupplyConduit" />
+      <li Class="EccentricFurniture.CompProperties_SupplyProvider">
+        <canAcceptItems>false</canAcceptItems>
+      </li>
+      <li Class="EccentricSupplyInput.CompProperties_StorageInput" />
+    </comps>
+    <inspectorTabs>
+      <li>EccentricFurniture.ITab_SupplyNetwork</li>
+    </inspectorTabs>
+    <placeWorkers>
+      <li>EccentricFurniture.PlaceWorker_SupplyConduit</li>
+      <li>EccentricSupplyInput.PlaceWorker_ConnectorExclusion</li>
+    </placeWorkers>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <designationCategory>Eccentric_Tech</designationCategory>
+    <researchPrerequisites>
+      <li>Eccentric_SupplyNetworks</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+  </ThingDef>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Eccentric_SupplyRepairConnector</defName>
+    <label>repair input connector</label>
+    <description>A floor-level connector that repairs damaged weapons and apparel held in the storage building or stockpile zone above it, drawing raw materials from a connected supply network.\n\nUnlike a repair shelf, which only works on items sitting on its own tile, the connector covers the entire storage it is built under.\n\nOnly uses power while actively repairing.</description>
+    <thingClass>Building</thingClass>
+    <category>Building</category>
+    <size>(1,1)</size>
+    <tickerType>Rare</tickerType>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <passability>Standable</passability>
+    <pathCost>0</pathCost>
+    <fillPercent>0</fillPercent>
+    <drawerType>MapMeshOnly</drawerType>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <clearBuildingArea>false</clearBuildingArea>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <noRightClickDraftAttack>true</noRightClickDraftAttack>
+    <canOverlapZones>true</canOverlapZones>
+    <building>
+      <isEdifice>false</isEdifice>
+      <isInert>true</isInert>
+      <ai_chillDestination>false</ai_chillDestination>
+      <canLandGravshipOn>true</canLandGravshipOn>
+      <relatedBuildCommands>
+        <li>Eccentric_SupplyConduit</li>
+        <li>Eccentric_SupplyConduitUnderground</li>
+      </relatedBuildCommands>
+    </building>
+    <graphicData>
+      <texPath>EccentricSupplyInput/RepairInputConnector</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <damageData>
+        <enabled>false</enabled>
+      </damageData>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <WorkToBuild>2500</WorkToBuild>
+      <Flammability>0.5</Flammability>
+    </statBases>
+    <costList>
+      <Plasteel>75</Plasteel>
+      <ComponentIndustrial>8</ComponentIndustrial>
+      <ComponentSpacer>4</ComponentSpacer>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>100</basePowerConsumption>
+        <idlePowerDraw>0</idlePowerDraw>
+        <alwaysDisplayAsUsingPower>true</alwaysDisplayAsUsingPower>
+      </li>
+      <li Class="EccentricFurniture.CompProperties_SupplyConduit" />
+      <li Class="EccentricFurniture.CompProperties_SupplyConsumer" />
+      <li Class="EccentricFurniture.CompProperties_RepairItems">
+        <autoScan>true</autoScan>
+      </li>
+      <li Class="EccentricSupplyInput.CompProperties_StorageRepair" />
+      <li Class="EccentricSupplyInput.CompProperties_RepairOverlay" />
+    </comps>
+    <inspectorTabs>
+      <li>EccentricFurniture.ITab_GearRepair</li>
+      <li>EccentricFurniture.ITab_SupplyNetwork</li>
+    </inspectorTabs>
+    <placeWorkers>
+      <li>EccentricFurniture.PlaceWorker_SupplyConduit</li>
+      <li>EccentricSupplyInput.PlaceWorker_ConnectorExclusion</li>
+    </placeWorkers>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <designationCategory>Eccentric_Tech</designationCategory>
+    <researchPrerequisites>
+      <li>Eccentric_AutomatedRepair</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+  </ThingDef>
+
+</Defs>
